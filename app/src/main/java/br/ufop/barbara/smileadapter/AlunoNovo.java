@@ -49,17 +49,17 @@ public class AlunoNovo extends AppCompatActivity {
             Smile aluno = new Smile(nome, curso, periodo, matricula, coef, phone);
             alunos.add(aluno);
 
-            showMessage("Cadastrado com Exito", AlunoNovo.this);
-            new Main2Activity();
+            showMessage("Cadastrado com sucesso", AlunoNovo.this);
+            finish();
         }
         catch (Exception e) {
-            showMessage("Erro Ao efetivar o cadastro", AlunoNovo.this);
+            showMessage("Erro ao cadastrar", AlunoNovo.this);
         }
 
     }
 
     public void cancelar(View v){
-       new Main2Activity();
+       finish();
     }
 
     public void showMessage(String Caption, Activity activity) {

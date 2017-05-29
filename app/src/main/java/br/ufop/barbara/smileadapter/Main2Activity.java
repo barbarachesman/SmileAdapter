@@ -32,11 +32,9 @@ public class Main2Activity extends AppCompatActivity {
 
     }
 
-    public void call(View view, int position){
+    public void call(View view){
         //Call - Exibe a lista de alunos e liga para o aluno selecionado
         Intent it = new Intent(this, AlunoCall.class);
-        it.putExtra("alunos", alunos);
-        it.putExtra("posicao", position);
         startActivity(it);
 
     }

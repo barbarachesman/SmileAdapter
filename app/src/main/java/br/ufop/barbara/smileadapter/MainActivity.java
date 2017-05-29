@@ -22,7 +22,7 @@ public class MainActivity extends ListActivity {
         alunos.add(new Smile( "Barbara", "SI", 8, 13121,  10, 91207505));
         alunos.add(new Smile( "Luiza", "SI", 8, 13121,  9, 91096756));
         alunos.add(new Smile( "Rafael", "SI", 8, 76287,  4, 900001939));
-        alunos.add(new Smile( "ALine", "SI", 8, 80873,  6, 32341233));
+        alunos.add(new Smile( "Aline", "SI", 8, 80873,  6, 32341233));
 
         setListAdapter(new SmileAdapter(this, alunos));
 
@@ -39,6 +39,8 @@ public class MainActivity extends ListActivity {
         it.putExtra("alunos", alunos);
         it.putExtra("posicao", position);
         startActivityForResult(it, ALUNO_EDIT);
+
+        //startActivityForResult(it, ALUNO_CALL);
 
         //Toast.makeText(this, "You selected: " + smile.name, Toast.LENGTH_SHORT).show();
     }

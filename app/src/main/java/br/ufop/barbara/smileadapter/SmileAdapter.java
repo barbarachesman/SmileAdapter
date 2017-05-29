@@ -62,6 +62,9 @@ public class SmileAdapter extends BaseAdapter{
         TextView coeficiente = (TextView) v.findViewById(R.id.coeficiente);
         coeficiente.setText(String.valueOf(smile.coeficiente));
 
+        TextView phone = (TextView) v.findViewById(R.id.phone);
+        phone.setText(String.valueOf(smile.phone));
+
         ImageView img = (ImageView) v.findViewById(R.id.imageView);
         img.setImageResource(smile.getImage());
 

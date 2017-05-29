@@ -20,65 +20,45 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class AlunoCall extends AppCompatActivity {
+public class AlunoCall extends ListActivity {
     private ArrayList<Smile> alunos = new ArrayList<Smile>();
     private int posicao = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Receber dados de MainActivity
-        Intent it = getIntent();
-        Bundle params = it.getExtras();
 
-        alunos = (ArrayList<Smile>) params.get("alunos");
-        posicao = (int) params.get("posicao");
+        alunos.add(new Smile( "Barbara", "SI", 8, 13121,  10, 91207505));
+        alunos.add(new Smile( "Luiza", "SI", 8, 13121,  9, 91096756));
+        alunos.add(new Smile( "Rafael", "SI", 8, 76287,  4, 900001939));
+        alunos.add(new Smile( "Aline", "SI", 8, 80873,  6, 32341233));
 
-        setContentView(R.layout.activity_aluno_edit);
-
-        EditText et1 = (EditText) findViewById(R.id.txtnome);
-        et1.setText("" + alunos.get(posicao).name);
-
-        EditText et2 = (EditText) findViewById(R.id.txtMatri);
-        et2.setText("" + alunos.get(posicao).matricula);
-
-        EditText et3 = (EditText) findViewById(R.id.txtcoeficiente);
-        et3.setText("" + alunos.get(posicao).coeficiente);
-
-        EditText et4 = (EditText) findViewById(R.id.txtcurso);
-        et4.setText("" + alunos.get(posicao).curso);
-
-        EditText et5 = (EditText) findViewById(R.id.txtperiodo);
-        et5.setText("" + alunos.get(posicao).periodo);
-
-        EditText et6 = (EditText) findViewById(R.id.txtphone);
-        et6.setText("" + alunos.get(posicao).phone);
-
+        setListAdapter(new SmileAdapter(this, alunos));
     }
-
-    /*@Override
+    @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.CALL_PHONE}, 1);
         super.onListItemClick(l, v, position, id);
         //Take item on a specific position
         Smile smile = (Smile) this.getListAdapter().getItem(position);
 
-        Uri uri = Uri.parse("tel:" + v.findViewById(R.id.txtphone));
+        Uri uri = Uri.parse(String.valueOf(smile.phone));
         Intent it = new Intent(Intent.ACTION_CALL, uri);
-        if (ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
             startActivity(it);
         }
+    }
 
-        //Toast.makeText(this, "You selected: " + smile.name, Toast.LENGTH_SHORT).show();
-    }*/
-
-    public void makeCall(View view) {
-        String text = "99887766";
-        Uri uri = Uri.parse("tel:" + text);
-        Intent it = new Intent(Intent.ACTION_CALL, uri);
-        if (ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-            startActivity(it);
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        for (int i = 0; i < grantResults.length; ++i) {
+            if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
+                //Permission has been denied
+                Toast.makeText(this, "Permission denied!", Toast.LENGTH_SHORT).show();
+                finish();
+            }
         }
     }
 }

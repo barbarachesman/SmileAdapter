@@ -16,10 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".AlunoEdit" />
         <activity android:name=".MainActivity" />
         <activity android:name=".AlunoCall" />
         <activity android:name=".AlunoNovo"></activity>
     </application>
-
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 </manifest>
