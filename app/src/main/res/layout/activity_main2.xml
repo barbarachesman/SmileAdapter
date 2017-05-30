@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="br.ufop.barbara.smileadapter.Main2Activity">
+    tools:context="br.ufop.barbara.smileadapter.MainActivity">
 
     <Button
         android:id="@+id/btnAdd"

@@ -10,11 +10,9 @@ import android.widget.EditText;
 
 import java.util.ArrayList;
 
-import static br.ufop.barbara.smileadapter.R.id.phone;
-
 public class AlunoNovo extends AppCompatActivity {
 
-    private ArrayList<Smile> alunos = new ArrayList<Smile>();
+    private ArrayList<Aluno> alunos = new ArrayList<Aluno>();
     private int posicao = -1;
 
 
@@ -46,8 +44,14 @@ public class AlunoNovo extends AppCompatActivity {
             EditText et6 = (EditText) findViewById(R.id.txtphone);
             int phone = Integer.parseInt(et6.getText().toString());
 
-            Smile aluno = new Smile(nome, curso, periodo, matricula, coef, phone);
+            Aluno aluno = new Aluno(nome, curso, periodo, matricula, coef, phone);
+
             alunos.add(aluno);
+            //Envia lista de alunos atualizada para a activity que a chamou
+            Intent it = new Intent();
+            it.putExtra("alunos", alunos);
+            setResult(RESULT_OK, it);
+
 
             showMessage("Cadastrado com sucesso", AlunoNovo.this);
             finish();

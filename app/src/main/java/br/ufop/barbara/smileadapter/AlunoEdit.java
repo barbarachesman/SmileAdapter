@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class AlunoEdit extends AppCompatActivity {
 
-    private ArrayList<Smile> alunos = new ArrayList<Smile>();
+    private ArrayList<Aluno> alunos = new ArrayList<Aluno>();
     private int posicao = -1;
 
 
@@ -18,11 +18,11 @@ public class AlunoEdit extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Receber dados de MainActivity
+        //Receber dados de AlunoList
         Intent it = getIntent();
         Bundle params = it.getExtras();
 
-        alunos = (ArrayList<Smile>) params.get("alunos");
+        alunos = (ArrayList<Aluno>) params.get("alunos");
         posicao = (int) params.get("posicao");
 
         setContentView(R.layout.activity_aluno_edit);
@@ -65,7 +65,7 @@ public class AlunoEdit extends AppCompatActivity {
         EditText et6 = (EditText) findViewById(R.id.txtphone);
         int phone = Integer.parseInt(et6.getText().toString());
 
-        Smile aluno = new Smile(nome, curso, periodo, matricula, coef, phone);
+        Aluno aluno = new Aluno(nome, curso, periodo, matricula, coef, phone);
         alunos.set(posicao, aluno);
 
         //Envia lista de alunos atualizada para a activity que a chamou

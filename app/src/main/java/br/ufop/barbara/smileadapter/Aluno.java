@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Created by barbara on 17/05/17.
  */
 
-public class Smile implements Parcelable{
+public class Aluno implements Parcelable{
 
     /*public static final int HAPPY = 1;
     public static final int SAD = 2;
@@ -20,7 +20,7 @@ public class Smile implements Parcelable{
     public int phone;
 
 
-    public Smile(String name, String curso,int periodo, int matricula, double coeficiente, int phone) {
+    public Aluno(String name, String curso, int periodo, int matricula, double coeficiente, int phone) {
         this.name = name;
         this.curso = curso;
         this.periodo = periodo;
@@ -30,7 +30,7 @@ public class Smile implements Parcelable{
     }
 
 
-    protected Smile(Parcel in) {
+    protected Aluno(Parcel in) {
         name = in.readString();
         curso = in.readString();
         periodo = in.readInt();
@@ -39,15 +39,15 @@ public class Smile implements Parcelable{
         phone  = in.readInt();
     }
 
-    public static final Creator<Smile> CREATOR = new Creator<Smile>() {
+    public static final Creator<Aluno> CREATOR = new Creator<Aluno>() {
         @Override
-        public Smile createFromParcel(Parcel in) {
-            return new Smile(in.readString(), in.readString(), in.readInt(), in.readInt(), (int) in.readDouble(), in.readInt());
+        public Aluno createFromParcel(Parcel in) {
+            return new Aluno(in.readString(), in.readString(), in.readInt(), in.readInt(), (int) in.readDouble(), in.readInt());
         }
 
         @Override
-        public Smile[] newArray(int size) {
-            return new Smile[size];
+        public Aluno[] newArray(int size) {
+            return new Aluno[size];
         }
     };
 

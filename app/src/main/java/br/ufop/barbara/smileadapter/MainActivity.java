@@ -1,60 +1,65 @@
 package br.ufop.barbara.smileadapter;
 
-import android.app.ListActivity;
 import android.content.Intent;
-import android.support.constraint.solver.ArrayLinkedVariables;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MainActivity extends ListActivity {
+public class MainActivity extends AppCompatActivity {
     private static final int ALUNO_EDIT = 1;
-    private ArrayList<Smile> alunos = new ArrayList<Smile>();
+    private static final int ALUNO_NOVO = 2;
+    private Integer action = 0;
+
+    private ArrayList<Aluno> alunos = new ArrayList<Aluno>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main2);
+    }
 
-        alunos.add(new Smile( "Barbara", "SI", 8, 13121,  10, 91207505));
-        alunos.add(new Smile( "Luiza", "SI", 8, 13121,  9, 91096756));
-        alunos.add(new Smile( "Rafael", "SI", 8, 76287,  4, 900001939));
-        alunos.add(new Smile( "Aline", "SI", 8, 80873,  6, 32341233));
-
-        setListAdapter(new SmileAdapter(this, alunos));
+    public void add(View view){
+        //Add - Chama nova activity para cadastrar aluno
+        Intent it = new Intent(this, AlunoNovo.class);
+        it.putExtra( "alunos", alunos);
+        startActivityForResult(it, ALUNO_NOVO);
 
     }
 
-    @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
-        //Take item on a specific position
-        Smile smile = (Smile) this.getListAdapter().getItem(position);
-
-        //Enviar alunos e posicao para activity ALunoEdit
-        Intent it = new Intent(this, AlunoEdit.class);
-        it.putExtra("alunos", alunos);
-        it.putExtra("posicao", position);
+    public void edit(View view){
+        //List - Lista (e edita) alunos conforme já implementado
+        Intent it = new Intent(this, AlunoList.class);
+        it.putExtra( "alunos", alunos);
+        action = 0;
+        it.putExtra("action", action );
         startActivityForResult(it, ALUNO_EDIT);
 
-        //startActivityForResult(it, ALUNO_CALL);
+    }
 
-        //Toast.makeText(this, "You selected: " + smile.name, Toast.LENGTH_SHORT).show();
+    public void call(View view){
+        //Call - Exibe a lista de alunos e liga para o aluno selecionado
+        Intent it = new Intent(this, AlunoList.class);
+        it.putExtra( "alunos", alunos);
+        action = 1;
+        it.putExtra("action", action );
+        startActivity(it);
+
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == ALUNO_EDIT) {
+        if ( requestCode == ALUNO_EDIT || requestCode == ALUNO_NOVO ) {
             if (resultCode == RESULT_OK) {
                 alunos = data.getParcelableArrayListExtra("alunos");
-                setListAdapter(new SmileAdapter(this, alunos));
             }
-        } else {
-
         }
     }
+
+
+
+
+
 }

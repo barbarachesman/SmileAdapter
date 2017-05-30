@@ -14,25 +14,25 @@ import java.util.List;
  * Created by barbara on 17/05/17.
  */
 
-public class SmileAdapter extends BaseAdapter{
+public class AlunoAdapter extends BaseAdapter{
 
 
     private Context context;
-    private List<Smile> smiles;
+    private List<Aluno> alunos;
 
-    public SmileAdapter(Context context, List<Smile> smiles){
+    public AlunoAdapter(Context context, List<Aluno> alunos){
         this.context = context;
-        this.smiles = smiles;
+        this.alunos = alunos;
     }
 
     @Override
     public int getCount() {
-        return smiles.size();
+        return alunos.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return smiles.get(position);
+        return alunos.get(position);
     }
 
     @Override
@@ -42,31 +42,31 @@ public class SmileAdapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Smile smile = smiles.get(position);
+        Aluno aluno = alunos.get(position);
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(R.layout.smile_detail, null);
 
         TextView textNome = (TextView) v.findViewById(R.id.textView);
-        textNome.setText(smile.name);
+        textNome.setText(aluno.name);
 
         TextView curso = (TextView) v.findViewById(R.id.curso);
-        curso.setText(smile.curso);
+        curso.setText(aluno.curso);
 
         TextView periodo = (TextView) v.findViewById(R.id.periodo);
-        periodo.setText((String.valueOf(smile.periodo)));
+        periodo.setText((String.valueOf(aluno.periodo)));
 
         TextView matricula = (TextView) v.findViewById(R.id.matricula);
-        matricula.setText(String.valueOf(smile.matricula));
+        matricula.setText(String.valueOf(aluno.matricula));
 
         TextView coeficiente = (TextView) v.findViewById(R.id.coeficiente);
-        coeficiente.setText(String.valueOf(smile.coeficiente));
+        coeficiente.setText(String.valueOf(aluno.coeficiente));
 
         TextView phone = (TextView) v.findViewById(R.id.phone);
-        phone.setText(String.valueOf(smile.phone));
+        phone.setText(String.valueOf(aluno.phone));
 
         ImageView img = (ImageView) v.findViewById(R.id.imageView);
-        img.setImageResource(smile.getImage());
+        img.setImageResource(aluno.getImage());
 
 
         return v;
